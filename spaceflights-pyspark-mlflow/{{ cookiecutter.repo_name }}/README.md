@@ -1,10 +1,17 @@
 # {{ cookiecutter.project_name }}
 
+
 ## Overview
 
 This is your new Kedro project with PySpark setup, which was generated using `kedro {{ cookiecutter.kedro_version }}`.
 
 Take a look at the [Kedro documentation](https://docs.kedro.org) to get started.
+
+## Special setup
+Ensure that you have the following evnironment variables set:
+```bash
+export PYSPARK_PIN_THREAD=false
+````
 
 ## Rules and guidelines
 
