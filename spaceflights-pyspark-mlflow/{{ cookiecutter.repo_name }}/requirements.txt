@@ -13,4 +13,4 @@ pytest~=7.2
 ruff~=0.1.8
 scikit-learn~=1.0
 pyspark==3.3.2
-gcsfs==2024.5.0
+gcsfs
