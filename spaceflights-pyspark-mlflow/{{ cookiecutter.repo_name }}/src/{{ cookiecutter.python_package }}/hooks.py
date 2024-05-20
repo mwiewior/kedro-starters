@@ -13,11 +13,12 @@ class SparkHooks:
         # Load the spark configuration in spark.yaml using the config loader
         parameters = context.config_loader["spark"]
         spark_conf = SparkConf().setAll(parameters.items())
-
+        spark_master = spark_conf.get("spark.master")
         # Initialise the spark session
         spark_session_conf = (
             SparkSession.builder.appName(context.project_path.name)
             .enableHiveSupport()
+            .master(spark_master)
             .config(conf=spark_conf)
         )
         _spark_session = spark_session_conf.getOrCreate()
