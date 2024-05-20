@@ -2,12 +2,13 @@ import logging
 from typing import Dict, Tuple
 import mlflow
 import pandas as pd
+from pyspark.sql import DataFrame as SparkDataFrame
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
 
 
-def split_data(data: pd.DataFrame, parameters: Dict) -> Tuple:
+def split_data(data: SparkDataFrame, parameters: Dict) -> Tuple:
     mlflow.autolog(True)
     """Splits data into features and targets training and test sets.
 
@@ -17,6 +18,7 @@ def split_data(data: pd.DataFrame, parameters: Dict) -> Tuple:
     Returns:
         Split data.
     """
+    data = data.toPandas()
     X = data[parameters["features"]]
     y = data["price"]
     X_train, X_test, y_train, y_test = train_test_split(
@@ -41,7 +43,7 @@ def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> LinearRegression:
 
 
 def evaluate_model(
-    regressor: LinearRegression, X_test: pd.DataFrame, y_test: pd.Series
+        regressor: LinearRegression, X_test: pd.DataFrame, y_test: pd.Series
 ):
     """Calculates and logs the coefficient of determination.
 

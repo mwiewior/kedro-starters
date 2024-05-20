@@ -40,7 +40,7 @@
 # https://docs.kedro.org/en/stable/data/data_catalog.html
 
 companies:
-  filepath: data/01_raw/companies.csv
+  filepath: ${oc.env:DEV_BUCKET}/data/01_raw/companies.csv
   type: spark.SparkDataset
   file_format: csv
   load_args:
@@ -52,7 +52,7 @@ companies:
     mode: overwrite
 
 reviews:
-  filepath: data/01_raw/reviews.csv
+  filepath: ${oc.env:DEV_BUCKET}/data/01_raw/reviews.csv
   type: spark.SparkDataset
   file_format: csv
   load_args:
@@ -65,14 +65,14 @@ reviews:
 
 shuttles_excel:
   type: pandas.ExcelDataset
-  filepath: data/01_raw/shuttles.xlsx
+  filepath: ${oc.env:DEV_BUCKET}/data/01_raw/shuttles.xlsx
 
 shuttles@csv:
   type: pandas.CSVDataset
-  filepath: data/02_intermediate/shuttles.csv
+  filepath: ${oc.env:DEV_BUCKET}/data/02_intermediate/shuttles.csv
 
 shuttles@spark:
-  filepath: data/02_intermediate/shuttles.csv
+  filepath: ${oc.env:DEV_BUCKET}/data/02_intermediate/shuttles.csv
   type: spark.SparkDataset
   file_format: csv
   load_args:
@@ -84,7 +84,7 @@ shuttles@spark:
     mode: overwrite
 
 preprocessed_companies:
-  filepath: data/02_intermediate/preprocessed_companies.csv
+  filepath: ${oc.env:DEV_BUCKET}/data/02_intermediate/preprocessed_companies.csv
   type: spark.SparkDataset
   file_format: csv
   load_args:
@@ -96,7 +96,7 @@ preprocessed_companies:
     mode: overwrite
 
 preprocessed_shuttles:
-  filepath: data/02_intermediate/preprocessed_shuttles.csv
+  filepath: ${oc.env:DEV_BUCKET}/data/02_intermediate/preprocessed_shuttles.csv
   type: spark.SparkDataset
   file_format: csv
   load_args:
@@ -108,7 +108,7 @@ preprocessed_shuttles:
     mode: overwrite
 
 preprocessed_reviews:
-  filepath: data/02_intermediate/preprocessed_reviews.csv
+  filepath: ${oc.env:DEV_BUCKET}/data/02_intermediate/preprocessed_reviews.csv
   type: spark.SparkDataset
   file_format: csv
   load_args:
@@ -120,7 +120,7 @@ preprocessed_reviews:
     mode: overwrite
 
 model_input_table@spark:
-  filepath: data/03_primary/model_input_table.parquet
+  filepath: ${oc.env:DEV_BUCKET}/data/03_primary/model_input_table.parquet
   type: spark.SparkDataset
   file_format: parquet
   load_args:
@@ -131,9 +131,6 @@ model_input_table@spark:
     header: True
     mode: overwrite
 
-model_input_table@pandas:
-  type: pandas.ParquetDataset
-  filepath: data/03_primary/model_input_table.parquet
 
 # regressor:
 #   type: pickle.PickleDataset
