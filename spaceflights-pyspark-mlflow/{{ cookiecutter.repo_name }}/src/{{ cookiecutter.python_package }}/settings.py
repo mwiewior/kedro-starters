@@ -3,7 +3,7 @@ from the Kedro defaults. For further information, including these default values
 https://docs.kedro.org/en/stable/kedro_project_setup/settings.html."""
 
 # Instantiated project hooks.
-from test_kedro_pyspark.hooks import SparkHooks  # noqa: E402
+from {{cookiecutter.python_package}}.hooks import SparkHooks  # noqa: E402
 from omegaconf.resolvers import oc
 
 # Hooks are executed in a Last-In-First-Out (LIFO) order.
